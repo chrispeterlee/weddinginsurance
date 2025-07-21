@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Weather Insurance - Aviva Sicily</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        }
+        /* Aviva brand colors */
+        .aviva-red { background-color: #da020e; }
+        .aviva-blue { background-color: #003a6b; }
+        .aviva-light-blue { background-color: #0066cc; }
+        .text-aviva-red { color: #da020e; }
+        .text-aviva-blue { color: #003a6b; }
+        .text-aviva-light-blue { color: #0066cc; }
+        .border-aviva-red { border-color: #da020e; }
+        .border-aviva-blue { border-color: #003a6b; }
+        
+        /* Custom slider styles with Aviva branding */
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #da020e;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #da020e;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        /* For combobox */
+        .combo-list { z-index: 50; }
+        .combo-list li[aria-selected="true"] { background: #fef2f2; }
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(0,58,107,0.85), rgba(218,2,14,0.7));
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #003a6b, #0066cc);
+        }
+        .quote-card {
+            background-color: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(218,2,14,0.2);
+            box-shadow: 0 10px 30px rgba(218,2,14,0.1);
+        }
+        .loading-spinner {
+            border-top-color: #da020e;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .aviva-gradient {
+            background: linear-gradient(135deg, #003a6b 0%, #0066cc 50%, #da020e 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="gradient-bg text-white">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="text-2xl sm:text-3xl font-bold">AVIVA</div>
+                <div class="text-xs sm:text-sm opacity-90">Wedding Protection</div>
+            </div>
+            <div class="space-x-2 sm:space-x-4">
+                <a href="#" class="text-white hover:text-red-200 text-sm sm:text-base">Home</a>
+                <a href="#" class="text-white hover:text-red-200 text-sm sm:text-base">Insurance</a>
+                <a href="#" class="text-white hover:text-red-200 text-sm sm:text-base">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
+        <div class="hero-bg rounded-lg sm:rounded-2xl overflow-hidden">
+            <div class="hero-overlay">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="w-full lg:w-1/2 p-6 sm:p-8 lg:pr-12 lg:pl-12 lg:py-16 text-white">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Wedding Weather Insurance</h1>
+                        <p class="text-lg sm:text-xl mb-6 sm:mb-8 opacity-95">
+                            Planning your dream wedding in Sicily? Don't let unpredictable weather ruin your special day. If rain impacts your celebration, we'll pay for your honeymoon.
+                        </p>
+                        <ul class="mb-6 sm:mb-8 space-y-2 sm:space-y-3">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-red-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm sm:text-base">Instant online quotes for Sicilian venues</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-red-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm sm:text-base">Honeymoon payouts up to €20,000</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-red-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm sm:text-base">45+ years of historical weather analysis</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full lg:w-1/2 p-4 sm:p-6 lg:pr-12">
+                        <div class="quote-card p-6 sm:p-8 rounded-lg shadow-xl">
+                            <h2 class="text-2xl sm:text-3xl text-aviva-blue mb-4 sm:mb-6 text-center font-bold">Get Your Quote</h2>
+                            
+                            <!-- Combobox for Venue Search & Select -->
+                            <div class="mb-4 relative">
+                                <label for="venueCombo" class="block text-aviva-blue font-semibold mb-2 text-sm sm:text-base">Choose your wedding venue:</label>
+                                <input type="text" id="venueCombo" autocomplete="off"
+                                    placeholder="Start typing to search Sicilian venues..."
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-aviva-red text-sm sm:text-base">
+                                <ul id="venueComboList"
+                                    class="combo-list absolute z-20 bg-white w-full border border-gray-200 rounded-md mt-1 max-h-48 overflow-auto shadow-lg hidden"></ul>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="month" class="block text-aviva-blue font-semibold mb-2 text-sm sm:text-base">Wedding month:</label>
+                                    <select id="month" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-aviva-red text-sm sm:text-base">
+                                        <!-- Months will be populated dynamically -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="day" class="block text-aviva-blue font-semibold mb-2 text-sm sm:text-base">Wedding day:</label>
+                                    <select id="day" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-aviva-red text-sm sm:text-base">
+                                        <!-- Days will be populated dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="hour" class="block text-aviva-blue font-semibold mb-2 text-sm sm:text-base">Ceremony time:</label>
+                                <select id="hour" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-aviva-red text-sm sm:text-base">
+                                    <!-- Hours will be populated dynamically -->
+                                </select>
+                            </div>
+
+                            <!-- Honeymoon Payout Slider -->
+                            <div class="mb-6">
+                                <label for="payoutAmount" class="block text-aviva-blue font-semibold mb-2 text-sm sm:text-base">
+                                    Honeymoon Payout: €<span id="payoutValue">10000</span>
+                                </label>
+                                <input type="range" id="payoutAmount" min="5000" max="20000" value="10000" step="1000"
+                                       class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+                                <div class="flex justify-between text-xs text-gray-600 mt-1">
+                                    <span>€5,000</span>
+                                    <span>€12,500</span>
+                                    <span>€20,000</span>
+                                </div>
+                            </div>
+
+                            <!-- Weather Threshold Slider -->
+                            <div class="mb-6">
+                                <label for="weatherThreshold" class="block text-aviva-blue font-semibold mb-2 text-sm sm:text-base">
+                                    Weather Tolerance: <span id="thresholdValue">55</span>
+                                </label>
+                                <input type="range" id="weatherThreshold" min="10" max="90" value="55" step="5"
+                                       class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+                                <div class="flex justify-between text-xs text-gray-600 mt-1">
+                                    <span>10</span>
+                                    <span>50</span>
+                                    <span>90</span>
+                                </div>
+                                <p id="thresholdDescription" class="text-sm text-gray-600 mt-2 italic text-center">
+                                    "We expect lovely weather for our special day"
+                                </p>
+                            </div>
+
+                            <button onclick="getQuote()" class="w-full aviva-red text-white py-3 rounded-lg hover:opacity-90 transition duration-300 text-sm sm:text-base font-semibold">
+                                Calculate Wedding Insurance Quote
+                            </button>
+
+                            <div id="quoteResult" class="mt-6 p-4 bg-blue-50 rounded-md text-center relative min-h-[60px]">
+                                Your wedding protection quote will appear here
+                                <div id="loadingSpinner" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <div class="w-8 h-8 border-4 border-red-200 border-t-red-600 rounded-full loading-spinner"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Container for detailed analysis -->
+        <div id="detailsContainer"></div>
+    </main>
+
+    <footer class="aviva-blue text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <div class="text-2xl font-bold mb-2">AVIVA</div>
+                <p class="opacity-90">Protecting what matters most to you</p>
+            </div>
+            <p class="text-sm opacity-75">© 2025 Aviva plc. All rights reserved. This is a demonstration product.</p>
+        </div>
+    </footer>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="hidden fixed inset-0 modal-backdrop z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl p-6 sm:p-8 w-full max-w-md mx-auto">
+            <h3 class="text-xl sm:text-2xl font-bold text-aviva-blue mb-4">Protect Your Special Day!</h3>
+            <p class="text-gray-700 mb-6 text-sm sm:text-base">
+                We're working to bring wedding weather insurance to Sicily. Be the first to know when we launch this exciting new protection!
+            </p>
+            <form id="emailForm" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm sm:text-base"
+                           placeholder="your@email.com">
+                </div>
+                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                    <button type="submit" class="flex-1 aviva-red text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 text-sm sm:text-base font-semibold">
+                        Notify Me
+                    </button>
+                    <button type="button" onclick="closePurchaseModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition duration-300 text-sm sm:text-base">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+            <div id="successMessage" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-md text-sm sm:text-base">
+                Grazie! We'll notify you when Aviva Wedding Insurance launches in Sicily.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const venues = {
+            "Villa San Martino, Taormina": { lat: 37.8536, lon: 15.2861 },
+            "Belmond Grand Hotel Timeo, Taormina": { lat: 37.8525, lon: 15.2897 },
+            "Castello di Donnafugata, Ragusa": { lat: 36.8050, lon: 14.7844 },
+            "Villa Eva, Ravello": { lat: 40.6501, lon: 14.6087 },
+            "Palazzo Conte Federico, Palermo": { lat: 38.1157, lon: 13.3613 },
+            "Villa Boscogrande, Palermo": { lat: 38.1040, lon: 13.3742 },
+            "Verdura Resort, Agrigento": { lat: 37.2417, lon: 13.0831 },
+            "Villa Angelica, Cefalù": { lat: 38.0390, lon: 14.0214 },
+            "Borgo Egnazia, Puglia": { lat: 40.8539, lon: 17.3847 },
+            "Castello Camemi, Catania": { lat: 37.5079, lon: 15.0830 },
+            "Villa del Quar, Verona": { lat: 45.4384, lon: 10.9916 },
+            "Palazzo Belmonte, Salerno": { lat: 40.1742, lon: 15.0594 },
+            "Villa Cimbrone, Ravello": { lat: 40.6501, lon: 14.6087 },
+            "Castello Odescalchi, Bracciano": { lat: 42.1147, lon: 12.1894 },
+            "Villa Vignamaggio, Tuscany": { lat: 43.5583, lon: 11.3050 },
+            "Palazzo Margherita, Basilicata": { lat: 40.3928, lon: 16.3872 },
+            "Villa Magia, Positano": { lat: 40.6280, lon: 14.4897 },
+            "Castello di Vincigliata, Florence": { lat: 43.7696, lon: 11.2558 },
+            "Villa Pizzo, Lake Como": { lat: 45.8536, lon: 9.1397 },
+            "Palazzo Avino, Ravello": { lat: 40.6501, lon: 14.6087 },
+            "Villa Corte del Lago, Lake Como": { lat: 45.8536, lon: 9.1397 },
+            "Castello Brown, Portofino": { lat: 44.3022, lon: 9.2094 },
+            "Villa la Foce, Tuscany": { lat: 43.0314, lon: 11.7628 },
+            "Palazzo Stern, Venice": { lat: 45.4408, lon: 12.3378 },
+            "Villa Monastero, Lake Como": { lat: 45.9656, lon: 9.3897 }
+        };
+
+        const venueCombo = document.getElementById('venueCombo');
+        const venueComboList = document.getElementById('venueComboList');
+        const monthSelect = document.getElementById("month");
+        const daySelect = document.getElementById("day");
+        const hourSelect = document.getElementById("hour");
+        const quoteResult = document.getElementById("quoteResult");
+        const loadingSpinner = document.getElementById("loadingSpinner");
+        const detailsContainer = document.getElementById("detailsContainer");
+
+        // Slider elements
+        const payoutSlider = document.getElementById("payoutAmount");
+        const payoutValue = document.getElementById("payoutValue");
+        const thresholdSlider = document.getElementById("weatherThreshold");
+        const thresholdValue = document.getElementById("thresholdValue");
+        const thresholdDescription = document.getElementById("thresholdDescription");
+
+        let selectedVenue = null;
+        let cachedWeatherData = null; // Cache for weather data
+
+        // Combobox logic
+        function filterVenueList(query) {
+            const matches = Object.keys(venues)
+                .filter(name => name.toLowerCase().includes(query.toLowerCase()))
+                .slice(0, 20);
+
+            venueComboList.innerHTML = matches.length
+                ? matches.map((name, idx) => `<li class="px-4 py-2 hover:bg-red-50 cursor-pointer" tabindex="0" role="option" data-venue="${name}" aria-selected="false">${name}</li>`).join('')
+                : `<li class="px-4 py-2 text-gray-400">No venues found</li>`;
+
+            venueComboList.classList.toggle('hidden', matches.length === 0);
+        }
+
+        venueCombo.addEventListener('input', e => {
+            filterVenueList(e.target.value);
+            venueComboList.classList.remove('hidden');
+            selectedVenue = null;
+            cachedWeatherData = null; // Clear cache when venue changes
+        });
+
+        // Mouse selection
+        venueComboList.addEventListener('mousedown', e => {
+            if (e.target.dataset.venue) {
+                venueCombo.value = e.target.dataset.venue;
+                selectedVenue = e.target.dataset.venue;
+                venueComboList.classList.add('hidden');
+            }
+        });
+
+        // Keyboard navigation
+        venueCombo.addEventListener('keydown', function(e) {
+            const items = venueComboList.querySelectorAll('li[role=option]');
+            let index = Array.from(items).findIndex(li => li.getAttribute('aria-selected') === 'true');
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                index = index < items.length - 1 ? index + 1 : 0;
+                items.forEach(li => li.setAttribute('aria-selected', 'false'));
+                if (items[index]) items[index].setAttribute('aria-selected', 'true');
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                index = index > 0 ? index - 1 : items.length - 1;
+                items.forEach(li => li.setAttribute('aria-selected', 'false'));
+                if (items[index]) items[index].setAttribute('aria-selected', 'true');
+            } else if (e.key === 'Enter') {
+                if (index !== -1 && items[index]) {
+                    venueCombo.value = items[index].dataset.venue;
+                    selectedVenue = items[index].dataset.venue;
+                    venueComboList.classList.add('hidden');
+                }
+            }
+        });
+
+        // Hide list on blur
+        venueCombo.addEventListener('blur', () => setTimeout(() => venueComboList.classList.add('hidden'), 100));
+
+        // Clear cache when date/time changes
+        monthSelect.addEventListener('change', () => cachedWeatherData = null);
+        daySelect.addEventListener('change', () => cachedWeatherData = null);
+        hourSelect.addEventListener('change', () => cachedWeatherData = null);
+
+        // Update payout display when slider moves
+        payoutSlider.addEventListener("input", function() {
+            payoutValue.textContent = parseInt(this.value).toLocaleString();
+            if (cachedWeatherData) {
+                recalculateQuote(); // Recalculate using cached data
+            }
+        });
+
+        // Update threshold display and description when slider moves
+        thresholdSlider.addEventListener("input", function() {
+            const value = parseInt(this.value);
+            thresholdValue.textContent = value;
+            
+            // Update description based on threshold
+            let description = "";
+            if (value >= 80) {
+                description = "Perfect weather only - we demand sunshine and gentle breezes for our fairytale day";
+            } else if (value >= 70) {
+                description = "We've dreamed of this day - anything less than beautiful weather deserves compensation";
+            } else if (value >= 60) {
+                description = "We expect lovely weather for our special day";
+            } else if (value >= 50) {
+                description = "We hope for nice weather but understand Sicily can be unpredictable";
+            } else if (value >= 40) {
+                description = "We'll make the best of most conditions, but there are limits";
+            } else if (value >= 30) {
+                description = "We're flexible - a little rain won't stop our celebration";
+            } else if (value >= 20) {
+                description = "We embrace the elements - weather is just part of the adventure";
+            } else {
+                description = "We'd get married in a storm - nothing will dampen our spirits!";
+            }
+            
+            thresholdDescription.textContent = `"${description}"`;
+            
+            if (cachedWeatherData) {
+                recalculateQuote(); // Recalculate using cached data
+            }
+        });
+
+        function round(val, digits = 1) {
+            return Math.round(val * 10 ** digits) / 10 ** digits;
+        }
+
+        // Wedding weather scoring formula
+        function calculateWeatherScore(temp, rain, wind) {
+            const idealTemp = 24; // Slightly warmer ideal for weddings
+            const idealRain = 0;
+            const idealWind = 5;
+            
+            // Wedding-specific penalties - more sensitive to rain
+            const tempPenalty = Math.min(Math.abs(temp - idealTemp) * 1.8, 35);
+            const rainPenalty = Math.min(rain * 12, 60); // More harsh for rain at weddings
+            const windPenalty = Math.min(Math.max(wind - idealWind, 0) * 1.2, 45);
+            
+            const score = 100 - (tempPenalty + rainPenalty + windPenalty);
+            return Math.max(0, Math.min(100, score));
+        }
+
+        // Populate months
+        for (let i = 0; i < 12; i++) {
+            const opt = document.createElement("option");
+            opt.value = (i + 1).toString().padStart(2, '0');
+            opt.text = new Date(0, i).toLocaleString('default', { month: 'long' });
+            monthSelect.appendChild(opt);
+        }
+
+        // Populate days
+        for (let i = 1; i <= 31; i++) {
+            const opt = document.createElement("option");
+            opt.value = i.toString().padStart(2, '0');
+            opt.text = i;
+            daySelect.appendChild(opt);
+        }
+
+        // Populate hours (wedding ceremony times)
+        for (let i = 10; i <= 19; i++) {
+            const opt = document.createElement("option");
+            opt.value = i.toString().padStart(2, '0');
+            opt.text = `${i}:00`;
+            hourSelect.appendChild(opt);
+        }
+
+        // Function to recalculate quote using cached data
+        function recalculateQuote() {
+            if (!cachedWeatherData || cachedWeatherData.length === 0) return;
+
+            const venue = selectedVenue || venueCombo.value;
+            const month = monthSelect.value;
+            const day = daySelect.value;
+            const hour = hourSelect.value;
+
+            // Analyze weather data with new threshold
+            const badWeatherThreshold = parseInt(thresholdSlider.value);
+            const badWeatherDays = cachedWeatherData.filter(day => day.score < badWeatherThreshold);
+            const chanceOfBadWeather = (badWeatherDays.length / cachedWeatherData.length) * 100;
+
+            // Wedding insurance pricing model
+            const honeymoonPayout = parseInt(payoutSlider.value);
+            const riskMultiplier = 3.5; // Need to charge more than expected loss for profitability
+            const seasonalAdjustment = (parseInt(month) >= 11 || parseInt(month) <= 3) ? 1.8 : 1;
+            const weddingPremium = 1.2; // Wedding premium for higher stakes and admin costs
+            
+            const premium = Math.max(200, Math.ceil(
+                (chanceOfBadWeather / 100) * honeymoonPayout * riskMultiplier * seasonalAdjustment * weddingPremium
+            ));
+
+            // Calculate averages
+            const avgTemp = cachedWeatherData.reduce((sum, day) => sum + day.temp, 0) / cachedWeatherData.length;
+            const avgRain = cachedWeatherData.reduce((sum, day) => sum + day.rain, 0) / cachedWeatherData.length;
+            const avgWind = cachedWeatherData.reduce((sum, day) => sum + day.wind, 0) / cachedWeatherData.length;
+
+            // Display results
+            if (premium > 8000) {
+                quoteResult.innerHTML = `
+                    <div class="text-amber-700">
+                        <p class="font-bold mb-2 text-lg">High Risk Wedding Date</p>
+                        <p class="mb-2">${venue}</p>
+                        <p class="mb-2">Date: ${month}-${day} @ ${hour}:00</p>
+                        
+                        <div class="mt-4 bg-amber-50 p-4 rounded">
+                            <p class="mb-2">With a <span class="font-bold">${round(chanceOfBadWeather)}%</span> chance of weather issues, this date carries significant risk.</p>
+                            <p class="font-semibold text-amber-800">Consider these options:</p>
+                            <ul class="text-sm mt-2 list-disc list-inside">
+                                <li>Choose a different date with better historical weather</li>
+                                <li>Consider indoor venue options</li>
+                                <li>Embrace the risk - some of the most memorable weddings happen in challenging weather!</li>
+                            </ul>
+                            
+                            <div class="mt-4 bg-amber-100 p-3 rounded">
+                                <p class="font-semibold mb-1 text-amber-900">Weather Risk Analysis:</p>
+                                <ul class="list-disc list-inside text-sm">
+                                    <li>Weather Issues Probability: <span class="font-bold">${round(chanceOfBadWeather)}%</span></li>
+                                    <li>Avg. Temperature: ${round(avgTemp, 1)}°C</li>
+                                    <li>Avg. Rainfall: ${round(avgRain, 2)} mm</li>
+                                    <li>Avg. Wind Speed: ${round(avgWind, 1)} km/h</li>
+                                </ul>
+                                <p class="mt-2 text-sm"><strong>Estimated Premium:</strong> €${premium.toLocaleString()}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                quoteResult.innerHTML = `
+                    <div class="text-aviva-blue">
+                        <p class="font-bold mb-2 text-lg">Wedding Insurance Quote</p>
+                        <p class="mb-1">${venue}</p>
+                        <p class="mb-3">Date: ${month}-${day} @ ${hour}:00</p>
+                        
+                        <div class="mt-4 bg-blue-50 p-3 rounded border border-blue-200">
+                            <p class="font-semibold mb-1 text-aviva-blue">Weather Risk Analysis:</p>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>Weather Issues Probability: <span class="font-bold">${round(chanceOfBadWeather)}%</span></li>
+                                <li>Avg. Temperature: ${round(avgTemp, 1)}°C</li>
+                                <li>Avg. Rainfall: ${round(avgRain, 2)} mm</li>
+                                <li>Avg. Wind Speed: ${round(avgWind, 1)} km/h</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4 p-4 bg-red-50 rounded border border-red-200">
+                            <p class="text-xl font-bold text-aviva-red mb-2">Premium: €${premium.toLocaleString()}</p>
+                            <p class="text-sm text-aviva-blue mb-2">
+                                <strong>Honeymoon Protection:</strong> €${parseInt(payoutSlider.value).toLocaleString()} payout if weather score drops below ${badWeatherThreshold}
+                            </p>
+                            <p class="text-xs text-gray-600">
+                                Covers ceremony and reception weather disruption. Payout processed within 48 hours of weather verification.
+                            </p>
+                        </div>
+                        
+                        <button onclick="showPurchaseModal()" class="mt-4 w-full aviva-red text-white py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 font-semibold">
+                            Protect Our Wedding Day
+                        </button>
+                    </div>
+                `;
+            }
+
+            // Update detailed analysis
+            updateDetailedAnalysis(cachedWeatherData, badWeatherThreshold);
+        }
+
+        function updateDetailedAnalysis(weatherData, badWeatherThreshold) {
+            // Calculate mean and median scores
+            const sortedScores = weatherData.map(d => d.score).sort((a, b) => a - b);
+            const meanScore = weatherData.reduce((sum, d) => sum + d.score, 0) / weatherData.length;
+            const medianScore = sortedScores.length % 2 === 0
+                ? (sortedScores[sortedScores.length / 2 - 1] + sortedScores[sortedScores.length / 2]) / 2
+                : sortedScores[Math.floor(sortedScores.length / 2)];
+
+            // Sort weather data by score to get best and worst years
+            const sortedWeatherData = [...weatherData].sort((a, b) => a.score - b.score);
+            const worst5Years = sortedWeatherData.slice(0, 5);
+            const best5Years = sortedWeatherData.slice(-5).reverse();
+
+            detailsContainer.innerHTML = `
+                <div class="mt-8 p-4 sm:p-6 bg-white rounded-lg shadow-md border border-red-200">
+                    <h3 class="text-lg sm:text-xl font-bold text-aviva-blue mb-4">Historical Weather Analysis for Your Wedding Date</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                            <p class="font-semibold text-aviva-blue text-sm sm:text-base">Mean Weather Score</p>
+                            <p class="text-xl sm:text-2xl font-bold text-aviva-red">${round(meanScore, 1)}</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                            <p class="font-semibold text-aviva-blue text-sm sm:text-base">Median Weather Score</p>
+                            <p class="text-xl sm:text-2xl font-bold text-aviva-red">${round(medianScore, 1)}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-red-700 mb-2 text-sm sm:text-base">5 Most Challenging Weather Years</h4>
+                            <div class="space-y-2">
+                                ${worst5Years.map(data => `
+                                    <div class="bg-red-50 p-2 rounded text-xs sm:text-sm border border-red-200">
+                                        <span class="font-semibold">${data.year}:</span> 
+                                        Score ${round(data.score, 1)} 
+                                        <span class="text-xs text-gray-600 block sm:inline">
+                                            (${round(data.temp, 1)}°C, ${round(data.rain, 1)}mm rain, ${round(data.wind, 1)}km/h wind)
+                                        </span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-aviva-blue mb-2 text-sm sm:text-base">5 Most Beautiful Weather Years</h4>
+                            <div class="space-y-2">
+                                ${best5Years.map(data => `
+                                    <div class="bg-blue-50 p-2 rounded text-xs sm:text-sm border border-blue-200">
+                                        <span class="font-semibold">${data.year}:</span> 
+                                        Score ${round(data.score, 1)}
+                                        <span class="text-xs text-gray-600 block sm:inline">
+                                            (${round(data.temp, 1)}°C, ${round(data.rain, 1)}mm rain, ${round(data.wind, 1)}km/h wind)
+                                        </span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-xs sm:text-sm text-gray-600">
+                        <p><strong>Note:</strong> Weather scores range from 0-100. Scores below ${badWeatherThreshold} trigger honeymoon insurance payout.</p>
+                        <p>Analysis based on ${weatherData.length} years of historical weather data (1979-2024) for your chosen date and time.</p>
+                        <p class="mt-2 text-aviva-blue"><strong>Aviva's Promise:</strong> If weather impacts your special day, we'll ensure your honeymoon is extraordinary.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Rate limiting helper
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function fetchWithRetry(url, maxRetries = 3, delayMs = 1000) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url);
+                    if (response.status === 429) {
+                        // Rate limited, wait longer
+                        console.log(`Rate limited, waiting ${delayMs * (i + 1)}ms before retry...`);
+                        await delay(delayMs * (i + 1));
+                        continue;
+                    }
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    await delay(delayMs);
+                }
+            }
+        }
+
+        async function getQuote() {
+            // Clear any previous details
+            detailsContainer.innerHTML = '';
+            
+            // Show loading spinner with wedding-themed messages
+            const loadingMessages = [
+                "Checking the weather forecast for your big day...",
+                "Analyzing Sicilian weather patterns...",
+                "Consulting with local meteorologists...",
+                "Reviewing historical wedding weather data...",
+                "Calculating your perfect day probability...",
+                "Assessing venue-specific conditions...",
+                "Evaluating seasonal weather trends...",
+                "Preparing your personalized quote...",
+                "Ensuring your honeymoon is protected...",
+                "Making sure your special day is covered..."
+            ];
+            
+            let messageIndex = 0;
+            quoteResult.innerHTML = `
+                <div class="text-aviva-blue">
+                    <div class="mb-2" id="loadingMessage">${loadingMessages[messageIndex]}</div>
+                    <div class="w-8 h-8 border-4 border-red-200 border-t-red-600 rounded-full loading-spinner mx-auto"></div>
+                </div>
+            `;
+            
+            // Cycle through loading messages
+            const messageInterval = setInterval(() => {
+                messageIndex = (messageIndex + 1) % loadingMessages.length;
+                const loadingMessageEl = document.getElementById('loadingMessage');
+                if (loadingMessageEl) {
+                    loadingMessageEl.textContent = loadingMessages[messageIndex];
+                }
+            }, 2000);
+
+            const venue = selectedVenue || venueCombo.value;
+            
+            // Check if we have a valid venue
+            if (!venues[venue]) {
+                clearInterval(messageInterval);
+                quoteResult.innerHTML = `<div class="text-red-600">Please select a valid wedding venue from the list.</div>`;
+                return;
+            }
+            
+            const { lat, lon } = venues[venue];
+            const month = monthSelect.value;
+            const day = daySelect.value;
+            const hour = hourSelect.value;
+
+            // Check if we have cached data for this exact query
+            const cacheKey = `${venue}-${month}-${day}-${hour}`;
+            if (cachedWeatherData && cachedWeatherData.cacheKey === cacheKey) {
+                clearInterval(messageInterval);
+                recalculateQuote();
+                return;
+            }
+
+            const weatherData = [];
+            const years = [];
+            
+            // Create list of years to fetch
+            for (let year = 1979; year <= 2024; year++) {
+                years.push(year);
+            }
+
+            // Process in smaller batches to avoid rate limits
+            const batchSize = 5;
+            const delayBetweenBatches = 1000; // 1 second delay between batches
+
+            try {
+                for (let i = 0; i < years.length; i += batchSize) {
+                    const batch = years.slice(i, i + batchSize);
+                    const batchPromises = batch.map(async (year) => {
+                        const date = new Date(year, parseInt(month) - 1, parseInt(day));
+                        const yyyy = date.getFullYear();
+                        const mm = (date.getMonth() + 1).toString().padStart(2, '0');
+                        const dd = date.getDate().toString().padStart(2, '0');
+                        const fullDate = `${yyyy}-${mm}-${dd}`;
+                        
+                        const url = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${fullDate}&end_date=${fullDate}&hourly=temperature_2m,precipitation,windspeed_10m&timezone=Europe%2FRome`;
+
+                        try {
+                            const data = await fetchWithRetry(url);
+                            if (data && data.hourly && data.hourly.time) {
+                                const i = data.hourly.time.findIndex(t => t.includes(`T${hour}:00`));
+                                if (i !== -1) {
+                                    const temp = data.hourly.temperature_2m[i];
+                                    const rain = data.hourly.precipitation[i];
+                                    const wind = data.hourly.windspeed_10m[i];
+
+                                    const score = calculateWeatherScore(temp, rain, wind);
+                                    weatherData.push({
+                                        year,
+                                        temp,
+                                        rain,
+                                        wind,
+                                        score
+                                    });
+                                }
+                            }
+                        } catch (error) {
+                            console.error(`Error fetching data for year ${year}:`, error);
+                        }
+                    });
+
+                    await Promise.all(batchPromises);
+                    
+                    // Add delay between batches if not the last batch
+                    if (i + batchSize < years.length) {
+                        await delay(delayBetweenBatches);
+                    }
+                }
+
+                // Clear the loading message interval
+                clearInterval(messageInterval);
+
+                if (weatherData.length === 0) {
+                    quoteResult.innerHTML = `
+                        <div class="text-red-600">
+                            No weather data available for ${venue} on ${month}-${day} @ ${hour}:00.
+                            <br><small>This might be due to API limits. Please try again in a moment.</small>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Cache the weather data with a key
+                cachedWeatherData = weatherData;
+                cachedWeatherData.cacheKey = `${venue}-${month}-${day}-${hour}`;
+
+                // Show data collection summary
+                console.log(`Successfully collected data for ${weatherData.length} out of ${years.length} years`);
+
+                // Calculate and display quote
+                recalculateQuote();
+
+            } catch (error) {
+                // Clear the loading message interval
+                clearInterval(messageInterval);
+
+                quoteResult.innerHTML = `
+                    <div class="text-red-600">
+                        Error calculating wedding insurance quote. Please try again later.
+                        <br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        // Modal functions
+        function showPurchaseModal() {
+            document.getElementById('purchaseModal').classList.remove('hidden');
+        }
+
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').classList.add('hidden');
+            document.getElementById('emailForm').reset();
+            document.getElementById('successMessage').classList.add('hidden');
+        }
+
+        // Email form submission
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            
+            // In a real application, you would send this to your backend
+            console.log('Email submitted:', email);
+            
+            // Show success message
+            document.getElementById('successMessage').classList.remove('hidden');
+            document.getElementById('emailForm').style.display = 'none';
+            
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                closePurchaseModal();
+                document.getElementById('emailForm').style.display = 'block';
+            }, 3000);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('purchaseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePurchaseModal();
+            }
+        });
+    </script>
+</body>
+</html>
